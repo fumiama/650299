@@ -6,18 +6,20 @@
 _next:	.word 0
 .scend
 .alias	p	$ffd2
+.text
 main:
 	ldx #9
-	ldy #9
 	txa
+	tay
 	sed
-*	sty $10
-	stx $11
+*	stx $11
+	txa
 	ora #$30
 	jsr p
 	lda #42
 	jsr p
 	tya
+	pha
 	ora #$30
 	jsr p
 	lda #61
@@ -38,7 +40,8 @@ main:
 	and #$0f
 	ora #$30
 	jsr p
-	ldy $10
+	pla
+	tay
 	dey
 	beq +
 	lda #160
@@ -51,4 +54,5 @@ main:
 	txa
 	tay
 	jmp ---
-*	rts
+*	cld
+	rts
