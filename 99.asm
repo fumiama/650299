@@ -40,19 +40,17 @@ main:
 	and #$0f
 	ora #$30
 	jsr p
+	lda #160
+	jsr p
 	pla
 	tay
 	dey
-	beq +
-	lda #160
-	jsr p
-	jmp --
+	bne --
 *	lda #13
 	jsr p
 	dex
-	beq +
 	txa
 	tay
-	jmp ---
-*	cld
+	bne ---
+	cld
 	rts
